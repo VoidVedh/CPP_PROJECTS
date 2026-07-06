@@ -1,35 +1,33 @@
-//optimising bubble sort 
-//Auth - ved
-#include <iostream>
-#include <algorithm>
+#include<iostream>
+#include<algorithm>
 using namespace std;
 
-void Optimised_BubbleSort(int arr[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        bool swapped = false;
-
-        for (int j = 0; j < n - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                swap(arr[j], arr[j + 1]);
-                swapped = true;
+void selection_sort(int arr[], int n) {
+    // Outer loop iterates through each position
+    for(int i = 0; i < n - 1; i++) {
+        int index = i;
+        
+            for (int j = i + 1; j < n; j++) {
+            if(arr[j] < arr[index]) {
+                index = j;
             }
         }
-
-        if (!swapped)
-            break;
+        swap(arr[i], arr[index]);
     }
 }
 
-void print_bubble(int arr[], int n) {
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
+void print(int arr[], int n) {
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << endl;
 }
 
 int main() {
-    int arr[] = {4, 1, 7, 3, 7};
-    int n = 5;
-
-    Optimised_BubbleSort(arr, n);
-    print_bubble(arr, n);
-}
+    int arr[] = {5, 7, 2, 8, 3, 0, 1};
+    
+        int n = sizeof(arr) / sizeof(arr[0]);
+    
+    selection_sort(arr, n);
+    print(arr, n);
+    
+    return 0;
+}   
